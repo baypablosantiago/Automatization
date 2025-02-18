@@ -343,3 +343,4 @@ C:\Users\tepablob\Desktop\AutoTest\obj\Debug\net9.0\refint\AutoTest.dll
 C:\Users\tepablob\Desktop\AutoTest\obj\Debug\net9.0\AutoTest.pdb
 C:\Users\tepablob\Desktop\AutoTest\obj\Debug\net9.0\AutoTest.genruntimeconfig.cache
 C:\Users\tepablob\Desktop\AutoTest\obj\Debug\net9.0\ref\AutoTest.dll
+C:\Users\tepablob\Desktop\AutoTest\obj\Debug\net9.0\AutoTest.sourcelink.json
