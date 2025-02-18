@@ -12,9 +12,10 @@ class Program
             var player = new YouTubePlayer(browserService);
             Console.Clear();
             Console.WriteLine("Ingrese un numero para seleccionar una accion automatizada:");
-            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody)");
-            Console.WriteLine("2 - Busqueda en youtube con parametro personalizado");
-            Console.WriteLine("3 - Terminar aplicativo.");
+            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody).");
+            Console.WriteLine("2 - Busqueda en youtube con parametro personalizado.");
+            Console.WriteLine("3 - Escaneo de PDF, envio de correo con la informacion principal.");
+            Console.WriteLine("4 - Terminar aplicativo.");
             Console.Write("Opcion seleccionada: ");
 
             string selection = Console.ReadLine();
@@ -40,13 +41,18 @@ class Program
                     await browserService.CloseBrowserAsync();
                     break;
                 case "3":
+                    Console.WriteLine("Work in progress");
+                    var gmailAutomation = new GmailAutomation();
+                    await gmailAutomation.EnviarCorreo();
+                    break;
+                case "4":
                     menu = false;
                     Console.Clear();
                     Console.WriteLine("Gracias por utilizar la aplicacion.");
                     Console.WriteLine("Presione cualquier tecla para salir...");
                     Console.ReadKey();
                     Console.Clear();
-                    break;
+                break;
                 default:
                     Console.WriteLine("Opción no válida");
                     break;
