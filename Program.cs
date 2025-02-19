@@ -14,8 +14,9 @@ class Program
             Console.WriteLine("Ingrese un numero para seleccionar una accion automatizada:");
             Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody).");
             Console.WriteLine("2 - Busqueda en youtube con parametro personalizado.");
-            Console.WriteLine("3 - Escaneo de PDF, envio de correo con la informacion principal.");
-            Console.WriteLine("4 - Terminar aplicativo.");
+            Console.WriteLine("3 - Envio de correo con la sesion iniciada, cuerpo de ejemplo.");
+            Console.WriteLine("4 - Lectura de PDF, envio de correo con la lectura.");
+            Console.WriteLine("5 - Terminar aplicativo.");
             Console.Write("Opcion seleccionada: ");
 
             string selection = Console.ReadLine();
@@ -41,11 +42,22 @@ class Program
                     await browserService.CloseBrowserAsync();
                     break;
                 case "3":
-                    Console.WriteLine("Work in progress");
-                    var gmailAutomation = new GmailAutomation();
+                    Console.Clear();
+                    Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
+                    browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
+                    var gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.EnviarCorreo();
+                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.ReadKey();
+                    await browserService.CloseBrowserAsync();
                     break;
                 case "4":
+                    Console.Clear();
+                    Console.WriteLine("Work in progress...");
+                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.ReadKey();
+                    break;
+                case "5":
                     menu = false;
                     Console.Clear();
                     Console.WriteLine("Gracias por utilizar la aplicacion.");

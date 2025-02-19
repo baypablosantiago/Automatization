@@ -4,56 +4,41 @@ using Microsoft.Playwright;
 
 class GmailAutomation
 {
-    private readonly string _email = "bay.pablo.santiago@gmail.com";
-    private readonly string _password = "tucontraseña";
-    private readonly string _destinatario = "destinatario@example.com";
-    private readonly string _asunto = "Asunto del correo";
-    private readonly string _contenido = "Cuerpo del mensaje.";
+    private readonly string _destinatario;
+    private readonly string _asunto;
+    private readonly string _contenido;
+    private readonly BrowserService _browserService;
+
+    public GmailAutomation(BrowserService browserService, string destinatario, string asunto, string contenido)
+    {
+        _browserService = browserService;
+        _destinatario = destinatario;
+        _asunto = asunto;
+        _contenido = contenido;
+    }
 
     public async Task EnviarCorreo()
     {
-        using var playwright = await Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-        {
-            Headless = false,  // Esto te permite ver el navegador en acción
-            SlowMo = 1000
-        });
+        var page = await _browserService.CreatePageAsync();
+        await page.BringToFrontAsync();
 
-        var page = await browser.NewPageAsync();
-        
-        // Paso 1: Ir a Gmail
         await page.GotoAsync("https://mail.google.com/");
 
-        // Paso 2: Ingresar el correo
-        await page.FillAsync("input[type='email']", _email);
-        await page.WaitForSelectorAsync("button[jsname='V67aGc']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible });
+        await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");
 
-        await page.ClickAsync("button[jsname='V67aGc']");
-        
-        // Esperar a que el campo de la contraseña aparezca
-        await page.WaitForSelectorAsync("input[type='password']", new PageWaitForSelectorOptions { Timeout = 5000 });
+        await page.ClickAsync("div.T-I.T-I-KE.L3");
 
-        // Paso 3: Ingresar la contraseña
-        await page.FillAsync("input[type='password']", _password);
-        await page.ClickAsync("button[jsname='LgbsSe']");
+        await page.WaitForSelectorAsync("input[id=':vd']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 60000 }); // 60 segundos
+        await page.FillAsync("input[id=':vd']", _destinatario); 
 
-        // Paso 4: Esperar a que se cargue la bandeja de entrada
-        await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");  // Selector para el botón de redacción
+        await page.WaitForSelectorAsync("input[id=':rn']");
+        await page.FillAsync("input[id=':rn']", _asunto);
 
-        // Paso 5: Redactar el correo
-        await page.ClickAsync("div.T-I.T-I-KE.L3");  // Click en "Redactar"
-
-        // Paso 6: Llenar el formulario de correo
-        await page.FillAsync("textarea[name='to']", _destinatario);
-        await page.FillAsync("input[name='subjectbox']", _asunto);
+        await page.WaitForSelectorAsync("div[aria-label='Cuerpo del mensaje']");
         await page.FillAsync("div[aria-label='Cuerpo del mensaje']", _contenido);
 
-        // Paso 7: Enviar el correo
         await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
 
-        Console.WriteLine("Correo enviado con éxito.");
-        
-        // Cerrar el navegador
-        await browser.CloseAsync();
+        Console.WriteLine("📧 Correo enviado con éxito.");
     }
 }
