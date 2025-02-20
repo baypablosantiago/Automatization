@@ -2,11 +2,11 @@ using Microsoft.Playwright;
 using System;
 using System.Threading.Tasks;
 
-public class YouTubePlayer
+public class YoutubeAutomation
 {
     private readonly BrowserService _browserService;
 
-    public YouTubePlayer(BrowserService browserService)
+    public YoutubeAutomation(BrowserService browserService)
     {
         _browserService = browserService;
     }

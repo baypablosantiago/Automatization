@@ -47,6 +47,10 @@
             "Microsoft.Playwright": {
               "target": "Package",
               "version": "[1.50.0, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[9.1.0, )"
             }
           },
           "imports": [
