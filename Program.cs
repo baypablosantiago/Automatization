@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 class Program
 {
     public static async Task Main()
-    {
+    {   
+        Console.Title = "Procesos Automatizados 1.0";
         BrowserService browserService;
         YoutubeAutomation player;
         GmailAutomation gmailAutomation;
@@ -18,8 +19,8 @@ class Program
             Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody).");
             Console.WriteLine("2 - Busqueda en youtube con parametro personalizado.");
             Console.WriteLine("3 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
-            Console.WriteLine("4 - Lectura de PDF, muestra informacion importante por consola.");
-            Console.WriteLine("5 - Lectura de PDF, envia informacion importante por correo usando sesion iniciada en Chrome.");
+            Console.WriteLine("4 - Lectura completa de PDF, muestra extraccion de informacion importante por consola.");
+            Console.WriteLine("5 - Lectura completa de PDF, envia informacion importante por correo usando sesion iniciada en Chrome.");
             Console.WriteLine("6 - Terminar aplicativo.");
             Console.Write("Opcion seleccionada: ");
 
@@ -34,7 +35,7 @@ class Program
                     browserService = new BrowserService();
                     player = new YoutubeAutomation(browserService);
                     await player.PlaySongAsync("Bohemian Rhapsody");
-
+                    
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
                     Console.ReadKey();
                     await browserService.CloseBrowserAsync();
@@ -67,23 +68,23 @@ class Program
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("4 - Lectura de PDF, mostrando informacion importante:");
+                    Console.WriteLine("4 - Lectura completa de PDF, mostrando informacion importante al finalizar:");
 
                     reader = new PdfReaderAutomation();
                     reader.ReadPdf(PdfFile);
 
                     Console.WriteLine(" ");
-                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.WriteLine("Presione cualquier tecla para volver al menu principal.");
                     Console.ReadKey();
                     break;
                 case "5":
                     Console.Clear();
-                    Console.WriteLine("5 - Lectura de PDF, enviando informacion importante por correo:");
+                    Console.WriteLine("5 - Lectura completa de PDF, enviando informacion importante por correo:");
 
                     reader = new PdfReaderAutomation();
                     string toSIAFandMail = reader.ReadPdf(PdfFile);
                     browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
-                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", toSIAFandMail);
+                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Informacion importante", toSIAFandMail);
                     await gmailAutomation.SendMail();
 
                     Console.WriteLine(" ");
