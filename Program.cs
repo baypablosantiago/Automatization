@@ -16,8 +16,8 @@ class Program
         {
             Console.Clear();
             Console.WriteLine("Ingrese un numero para seleccionar una accion automatizada:");
-            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody).");
-            Console.WriteLine("2 - Busqueda en youtube con parametro personalizado.");
+            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody), usando sesion nueva.");
+            Console.WriteLine("2 - Busqueda en youtube con parametro personalizado, usando sesion nueva.");
             Console.WriteLine("3 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
             Console.WriteLine("4 - Lectura completa de PDF, muestra extraccion de informacion importante por consola.");
             Console.WriteLine("5 - Lectura completa de PDF, envia informacion importante por correo usando sesion iniciada en Chrome.");
