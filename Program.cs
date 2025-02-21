@@ -10,7 +10,7 @@ class Program
         YoutubeAutomation player;
         GmailAutomation gmailAutomation;
         PdfReaderAutomation reader;
-        string PdfFile = @"C:\Users\tepablob\Desktop\AutoTest\ExamplePDF.pdf";  // Revisar la ruta del pdf a leer!
+        string pdfFile = @"C:\Users\tepablob\Desktop\AutoTest\ExamplePDF.pdf";  // Revisar la ruta del pdf a leer!
         bool menu = true;
         while (menu)
         {
@@ -71,7 +71,7 @@ class Program
                     Console.WriteLine("4 - Lectura completa de PDF, mostrando informacion importante al finalizar:");
 
                     reader = new PdfReaderAutomation();
-                    reader.ReadPdf(PdfFile);
+                    reader.ReadPdf(pdfFile);
 
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para volver al menu principal.");
@@ -82,7 +82,7 @@ class Program
                     Console.WriteLine("5 - Lectura completa de PDF, enviando informacion importante por correo:");
 
                     reader = new PdfReaderAutomation();
-                    string toSIAFandMail = reader.ReadPdf(PdfFile);
+                    string toSIAFandMail = reader.ReadPdf(pdfFile);
                     browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
                     gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Informacion importante", toSIAFandMail);
                     await gmailAutomation.SendMail();
