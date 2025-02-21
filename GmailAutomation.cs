@@ -21,7 +21,6 @@ class GmailAutomation
     {
         var page = await _browserService.CreatePageAsync();
         await page.BringToFrontAsync();
-
         await page.GotoAsync("https://mail.google.com/");
 
         await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");

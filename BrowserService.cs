@@ -7,11 +7,8 @@ public class BrowserService
     private readonly IBrowser? _browser;
     private readonly IBrowserContext? _context;
     private readonly IPlaywright _playwright;
-    
-    /// <summary>
-    /// Constructor para abrir Chrome en una sesión nueva (sin sesión guardada).
-    /// </summary>
-    public BrowserService()
+
+    public BrowserService() //este constructor usa una sesion nueva, aunque el browser tenga una logeada
     {
         _playwright = Playwright.CreateAsync().Result;
         _browser = _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
@@ -22,10 +19,6 @@ public class BrowserService
         }).Result;
     }
 
-    /// <summary>
-    /// Constructor para abrir Chrome con una sesión persistente (perfil guardado).
-    /// </summary>
-    /// <param name="userDataPath">Ruta del perfil de usuario de Chrome.</param>
     public BrowserService(string userDataPath) //constructor sobrecargado para usar una sesion ya iniciada
     {
         _playwright = Playwright.CreateAsync().Result;
@@ -43,6 +36,10 @@ public class BrowserService
     {
         if (_context != null)
         {
+            if (_context.Pages.Count > 0)
+            {
+                return _context.Pages[0];
+            }
             return await _context.NewPageAsync();
         }
         else if (_browser != null)

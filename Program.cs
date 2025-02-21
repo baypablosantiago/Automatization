@@ -5,13 +5,12 @@ class Program
 {
     public static async Task Main()
     {
+        BrowserService browserService;
+        YoutubeAutomation player;
+        GmailAutomation gmailAutomation;
+        PdfReaderAutomation reader;
+        string PdfFile = @"C:\Users\tepablob\Desktop\AutoTest\ExamplePDF.pdf";  // Revisar la ruta del pdf a leer!
         bool menu = true;
-        var browserService = new BrowserService();
-        var player = new YoutubeAutomation(browserService);
-        var gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
-        PdfReaderAutomation reader = new PdfReaderAutomation();
-        string PdfFile = @"C:\Users\tepablob\Desktop\AutoTest\151807 P.pdf";  // Checkear la ruta!
-
         while (menu)
         {
             Console.Clear();
@@ -32,6 +31,8 @@ class Program
                     Console.Clear();
                     Console.WriteLine("Opción 1 - Busqueda automatizada de Bohemian Rhapsody.");
 
+                    browserService = new BrowserService();
+                    player = new YoutubeAutomation(browserService);
                     await player.PlaySongAsync("Bohemian Rhapsody");
 
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -43,6 +44,8 @@ class Program
                     Console.WriteLine("Opción 2 - Busqueda personalizada.");
                     Console.Write("Ingrese el nombre de una cancion o artista: ");
                     
+                    browserService = new BrowserService();
+                    player = new YoutubeAutomation(browserService);
                     string search = Console.ReadLine();
                     await player.PlaySongAsync(search);
 
@@ -55,6 +58,7 @@ class Program
                     Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
 
                     browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
+                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.SendMail();
 
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -65,6 +69,7 @@ class Program
                     Console.Clear();
                     Console.WriteLine("4 - Lectura de PDF, mostrando informacion importante:");
 
+                    reader = new PdfReaderAutomation();
                     reader.ReadPdf(PdfFile);
 
                     Console.WriteLine(" ");
@@ -75,14 +80,16 @@ class Program
                     Console.Clear();
                     Console.WriteLine("5 - Lectura de PDF, enviando informacion importante por correo:");
 
+                    reader = new PdfReaderAutomation();
                     string toSIAFandMail = reader.ReadPdf(PdfFile);
                     browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
-                    var gmailAutomation1 = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", toSIAFandMail);
-                    await gmailAutomation1.SendMail();
+                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", toSIAFandMail);
+                    await gmailAutomation.SendMail();
 
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
                     Console.ReadKey();
+                    await browserService.CloseBrowserAsync();
                     break;
                 case "6":
                     menu = false;
@@ -93,7 +100,10 @@ class Program
                     Console.Clear();
                 break;
                 default:
-                    Console.WriteLine("Opción no válida");
+                    Console.Clear();
+                    Console.WriteLine("Opción no válida.");
+                    await Task.Delay(1000);
+
                     break;
             }
         }

@@ -31,12 +31,12 @@ public class YoutubeAutomation
             var skipButton = await page.WaitForSelectorAsync("div.ytp-skip-ad button.ytp-skip-ad-button", new PageWaitForSelectorOptions { Timeout = 15000 });
             if (skipButton != null && await skipButton.IsVisibleAsync())
             {
-                Console.WriteLine("Omitiendo anuncio...");
+                Console.WriteLine("Intentando omitir anuncios...");
                 await skipButton.ClickAsync();
             }
         }
         catch (TimeoutException) { }
 
-        await page.Keyboard.PressAsync("f");
+        //await page.Keyboard.PressAsync("f"); //inicia modo cine, no es realmente necesario
     }
 }
