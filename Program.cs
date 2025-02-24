@@ -10,7 +10,8 @@ class Program
         YoutubeAutomation player;
         GmailAutomation gmailAutomation;
         PdfReaderAutomation reader;
-        string pdfFile = @"C:\Users\tepablob\Desktop\AutoTest\ExamplePDF.pdf";  // Revisar la ruta del pdf a leer!
+        string pdfFile = Path.Combine(AppContext.BaseDirectory, "Resources", "ExamplePDF.pdf");
+        string userDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Google", "Chrome", "User Data");
         bool menu = true;
         while (menu)
         {
@@ -24,7 +25,7 @@ class Program
             Console.WriteLine("6 - Terminar aplicativo.");
             Console.Write("Opcion seleccionada: ");
 
-            string selection = Console.ReadLine();
+            string selection = Console.ReadLine() ?? string.Empty; 
 
             switch (selection)
             {
@@ -47,7 +48,7 @@ class Program
                     
                     browserService = new BrowserService();
                     player = new YoutubeAutomation(browserService);
-                    string search = Console.ReadLine();
+                    string search = Console.ReadLine() ?? string.Empty; //operador de coalescencia nula, para evitar posibles null de parte del usuario
                     await player.PlaySongAsync(search);
 
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -58,7 +59,7 @@ class Program
                     Console.Clear();
                     Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
 
-                    browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
+                    browserService = new BrowserService(userDataPath);
                     gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.SendMail();
 
@@ -82,9 +83,9 @@ class Program
                     Console.WriteLine("5 - Lectura completa de PDF, enviando informacion importante por correo:");
 
                     reader = new PdfReaderAutomation();
-                    string toSIAFandMail = reader.ReadPdf(pdfFile);
-                    browserService = new BrowserService(@"C:\Users\tepablob\AppData\Local\Google\Chrome\User Data");
-                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Informacion importante", toSIAFandMail);
+                    string searchedItem = reader.ReadPdf(pdfFile);
+                    browserService = new BrowserService(userDataPath);
+                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Informacion importante", searchedItem);
                     await gmailAutomation.SendMail();
 
                     Console.WriteLine(" ");

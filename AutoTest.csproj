@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.Playwright" Version="1.50.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\ExamplePDF.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
+
 </Project>
