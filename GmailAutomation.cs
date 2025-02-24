@@ -4,15 +4,13 @@ using Microsoft.Playwright;
 
 class GmailAutomation
 {
-    private readonly string _recipient;
     private readonly string _subject;
     private readonly string _body;
     private readonly BrowserService _browserService;
 
-    public GmailAutomation(BrowserService browserService, string recipient, string subject, string body)
+    public GmailAutomation(BrowserService browserService, string subject, string body)
     {
         _browserService = browserService;
-        _recipient = recipient;
         _subject = subject;
         _body = body;
     }
@@ -23,21 +21,46 @@ class GmailAutomation
         await page.BringToFrontAsync();
         await page.GotoAsync("https://mail.google.com/");
 
-        await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");
+        var emailElement = await page.WaitForSelectorAsync("a[aria-label*='Cuenta de Google']", new() { Timeout = 5000 });
+        string? email = null;
 
-        await page.ClickAsync("div.T-I.T-I-KE.L3");
+        if (emailElement != null)
+        {
+            string? ariaLabel = await emailElement.GetAttributeAsync("aria-label");
+            if (!string.IsNullOrEmpty(ariaLabel))
+            {
+                int startIndex = ariaLabel.IndexOf('(');
+                int endIndex = ariaLabel.IndexOf(')');
+                if (startIndex != -1 && endIndex != -1 && startIndex < endIndex)
+                {
+                    email = ariaLabel.Substring(startIndex + 1, endIndex - startIndex - 1).Trim();
+                }
+            }
+        }
 
-        await page.WaitForSelectorAsync("input[id=':vd']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 60000 }); // 60 segundos
-        await page.FillAsync("input[id=':vd']", _recipient); 
+        if (email != null)
+        {
+            await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");
 
-        await page.WaitForSelectorAsync("input[id=':rn']");
-        await page.FillAsync("input[id=':rn']", _subject);
+            await page.ClickAsync("div.T-I.T-I-KE.L3");
 
-        await page.WaitForSelectorAsync("div[aria-label='Cuerpo del mensaje']");
-        await page.FillAsync("div[aria-label='Cuerpo del mensaje']", _body);
+            await page.WaitForSelectorAsync("input[id=':vd']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 60000 }); // 60 segundos
+            await page.FillAsync("input[id=':vd']", email);
 
-        await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
+            await page.WaitForSelectorAsync("input[id=':rn']");
+            await page.FillAsync("input[id=':rn']", _subject);
 
-        Console.WriteLine("📧 Correo enviado con éxito.");
+            await page.WaitForSelectorAsync("div[aria-label='Cuerpo del mensaje']");
+            await page.FillAsync("div[aria-label='Cuerpo del mensaje']", _body);
+
+            await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
+
+            Console.WriteLine("📧 Correo enviado con éxito.");
+        }
+        else
+        {
+            Console.WriteLine("No se pudo detectar el correo del usuario de Chrome.");
+        }
+
     }
 }

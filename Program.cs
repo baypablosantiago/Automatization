@@ -22,7 +22,7 @@ class Program
             Console.WriteLine("3 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
             Console.WriteLine("4 - Lectura completa de PDF, muestra extraccion de informacion importante por consola.");
             Console.WriteLine("5 - Lectura completa de PDF, envia informacion importante por correo usando sesion iniciada en Chrome.");
-            Console.WriteLine("6 - Terminar aplicativo.");
+            Console.WriteLine("9 - Terminar aplicativo.");
             Console.Write("Opcion seleccionada: ");
 
             string selection = Console.ReadLine() ?? string.Empty; 
@@ -60,7 +60,7 @@ class Program
                     Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
 
                     browserService = new BrowserService(userDataPath);
-                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
+                    gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.SendMail();
 
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -85,7 +85,7 @@ class Program
                     reader = new PdfReaderAutomation();
                     string searchedItem = reader.ReadPdf(pdfFile);
                     browserService = new BrowserService(userDataPath);
-                    gmailAutomation = new GmailAutomation(browserService, "bay.pablo.santiago@gmail.com", "Informacion importante", searchedItem);
+                    gmailAutomation = new GmailAutomation(browserService, "Informacion importante", searchedItem);
                     await gmailAutomation.SendMail();
 
                     Console.WriteLine(" ");
@@ -93,7 +93,7 @@ class Program
                     Console.ReadKey();
                     await browserService.CloseBrowserAsync();
                     break;
-                case "6":
+                case "9":
                     menu = false;
                     Console.Clear();
                     Console.WriteLine("Gracias por utilizar la aplicacion.");
