@@ -20,7 +20,8 @@ class PdfReaderAutomation
                 Console.WriteLine(pdfContent);
 
                 string toSIAF = ExtractForSIAF(pdfContent);
-                Console.WriteLine("\nObservaciones para ingresar al SIAF:");
+                Console.WriteLine("\nInformacion importante encontrada:");
+                Console.WriteLine(" ");
                 Console.WriteLine(toSIAF);
                 return toSIAF;
             }
@@ -51,7 +52,7 @@ class PdfReaderAutomation
         int end = content.IndexOf("\n------", start);
         if (end == -1)
         {
-            end = content.Length; // Si no hay delimitador, se toma hasta el final
+            end = content.Length; // ojo, si no hay delimitador, se toma hasta el final
         }
 
         return content.Substring(start, end - start).Trim();
