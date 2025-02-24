@@ -55,7 +55,7 @@ class GmailAutomation
 
             await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
 
-            Console.WriteLine("📧 Correo enviado con éxito.");
+            Console.WriteLine("Correo enviado con éxito.");
         }
         else
         {

@@ -19,11 +19,11 @@ class PdfReaderAutomation
                 Console.WriteLine("Contenido completo del PDF:");
                 Console.WriteLine(pdfContent);
 
-                string toSIAF = ExtractForSIAF(pdfContent);
+                string searched = ExtractForSIAF(pdfContent);
                 Console.WriteLine("\nInformacion importante encontrada:");
                 Console.WriteLine(" ");
-                Console.WriteLine(toSIAF);
-                return toSIAF;
+                Console.WriteLine(searched);
+                return searched;
             }
         }
     }

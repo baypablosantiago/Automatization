@@ -24,14 +24,13 @@ public class YoutubeAutomation
         await page.WaitForSelectorAsync("ytd-video-renderer", new PageWaitForSelectorOptions { Timeout = 10000 });
         await page.ClickAsync("ytd-video-renderer a#thumbnail");
 
-        Console.WriteLine($"🎵 Reproduciendo: {search}");
-
+        Console.WriteLine($"Reproduciendo: {search}");
+        Console.WriteLine("Intentando omitir anuncios si existen...");
         try
         {
             var skipButton = await page.WaitForSelectorAsync("div.ytp-skip-ad button.ytp-skip-ad-button", new PageWaitForSelectorOptions { Timeout = 15000 });
             if (skipButton != null && await skipButton.IsVisibleAsync())
             {
-                Console.WriteLine("Intentando omitir anuncios...");
                 await skipButton.ClickAsync();
             }
         }

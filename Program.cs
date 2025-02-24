@@ -5,7 +5,8 @@ class Program
 {
     public static async Task Main()
     {   
-        Console.Title = "Procesos Automatizados 1.0";
+        Console.Title = "Procesos Automatizados - Consola de demostracion";
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         BrowserService browserService;
         YoutubeAutomation player;
         GmailAutomation gmailAutomation;
@@ -16,13 +17,15 @@ class Program
         while (menu)
         {
             Console.Clear();
-            Console.WriteLine("Ingrese un numero para seleccionar una accion automatizada:");
-            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody), usando sesion nueva.");
-            Console.WriteLine("2 - Busqueda en youtube con parametro personalizado, usando sesion nueva.");
+            Console.WriteLine("Ingrese un numero para realizar una accion automatizada:");
+            Console.WriteLine(" ");
+            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody), usando una nueva sesion.");
+            Console.WriteLine("2 - Busqueda en youtube ingresando parametro de busqueda, usando una nueva sesion.");
             Console.WriteLine("3 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
-            Console.WriteLine("4 - Lectura completa de PDF, muestra extraccion de informacion importante por consola.");
-            Console.WriteLine("5 - Lectura completa de PDF, envia informacion importante por correo usando sesion iniciada en Chrome.");
-            Console.WriteLine("9 - Terminar aplicativo.");
+            Console.WriteLine("4 - Lectura completa de PDF de ejemplo, muestra informacion importante por consola.");
+            Console.WriteLine("5 - Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.");
+            Console.WriteLine("0 - Salir.");
+            Console.WriteLine(" ");
             Console.Write("Opcion seleccionada: ");
 
             string selection = Console.ReadLine() ?? string.Empty; 
@@ -93,13 +96,12 @@ class Program
                     Console.ReadKey();
                     await browserService.CloseBrowserAsync();
                     break;
-                case "9":
+                case "0":
                     menu = false;
                     Console.Clear();
                     Console.WriteLine("Gracias por utilizar la aplicacion.");
-                    Console.WriteLine("Presione cualquier tecla para salir...");
-                    Console.ReadKey();
-                    Console.Clear();
+                    await Task.Delay(1500);
+
                 break;
                 default:
                     Console.Clear();
