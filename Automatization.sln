@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTest", "AutoTest.csproj", "{A9AAF3E1-ECF4-215E-8780-AC73D97F3237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automatization", "Automatization.csproj", "{A9AAF3E1-ECF4-215E-8780-AC73D97F3237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
