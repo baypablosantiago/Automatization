@@ -38,7 +38,7 @@ class Program
 
                     browserService = new BrowserService();
                     player = new YoutubeAutomation(browserService);
-                    await player.PlaySongAsync("Bohemian Rhapsody");
+                    await player.PlaySong("Bohemian Rhapsody");
                     
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
                     Console.ReadKey();
@@ -52,7 +52,7 @@ class Program
                     browserService = new BrowserService();
                     player = new YoutubeAutomation(browserService);
                     string search = Console.ReadLine() ?? string.Empty; //operador de coalescencia nula, para evitar posibles null de parte del usuario
-                    await player.PlaySongAsync(search);
+                    await player.PlaySong(search);
 
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
                     Console.ReadKey();

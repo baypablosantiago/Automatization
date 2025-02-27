@@ -11,7 +11,7 @@ public class YoutubeAutomation
         _browserService = browserService;
     }
 
-    public async Task PlaySongAsync(string search)
+    public async Task PlaySong(string search)
     {
         var page = await _browserService.CreatePageAsync();
         await page.BringToFrontAsync();

@@ -1,6 +1,6 @@
 using Xunit;
 
-public class PdfReaderAutomationTests
+public class PdfReaderAutomationTests // UNIT TEST
 {
     [Fact]
     public void ExtractForSIAF_Returns_Expected_Text()
