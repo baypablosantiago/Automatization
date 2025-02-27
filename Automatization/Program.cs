@@ -75,8 +75,10 @@ class Program
                     Console.WriteLine("4 - Lectura completa de PDF, mostrando informacion importante al finalizar:");
 
                     reader = new PdfReaderAutomation();
-                    reader.ReadPdf(pdfFile);
+                    string info = reader.ReadPdf(pdfFile);
 
+                    Console.WriteLine(" ");
+                    Console.WriteLine(info);
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para volver al menu principal.");
                     Console.ReadKey();
