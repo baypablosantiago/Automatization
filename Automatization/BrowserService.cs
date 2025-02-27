@@ -8,25 +8,25 @@ public class BrowserService
     private readonly IBrowserContext? _context;
     private readonly IPlaywright _playwright;
 
-    public BrowserService() //este constructor usa una sesion nueva, aunque el browser tenga una logeada
+    public BrowserService(bool headless) //este constructor usa una sesion nueva, aunque el browser tenga una logeada
     {
         _playwright = Playwright.CreateAsync().Result;
         _browser = _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            Headless = false,
+            Headless = headless,
             SlowMo = 1000,
             ExecutablePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe" //con esto uso Chrome en lugar de Chromiun
         }).Result;
     }
 
-    public BrowserService(string userDataPath) //constructor sobrecargado para usar una sesion ya iniciada
+    public BrowserService(bool headless, string userDataPath) //constructor sobrecargado para usar una sesion ya iniciada
     {
         _playwright = Playwright.CreateAsync().Result;
         _context = _playwright.Chromium.LaunchPersistentContextAsync(
             userDataPath,
             new BrowserTypeLaunchPersistentContextOptions
             {
-                Headless = false,
+                Headless = headless,
                 SlowMo = 1000,
                 ExecutablePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe"
             }).Result;

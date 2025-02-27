@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
 
-class GmailAutomation
+public class GmailAutomation
 {
     private readonly string _subject;
     private readonly string _body;
@@ -55,12 +55,6 @@ class GmailAutomation
 
             await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
 
-            Console.WriteLine("Correo enviado con éxito.");
         }
-        else
-        {
-            Console.WriteLine("No se pudo detectar el correo del usuario de Chrome.");
-        }
-
     }
 }
