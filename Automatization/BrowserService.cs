@@ -14,7 +14,7 @@ public class BrowserService
         _browser = _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
             Headless = headless,
-            SlowMo = 1000,
+            SlowMo = headless ? 0 : 1000,
             ExecutablePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe" //con esto uso Chrome en lugar de Chromiun
         }).Result;
     }
@@ -27,7 +27,7 @@ public class BrowserService
             new BrowserTypeLaunchPersistentContextOptions
             {
                 Headless = headless,
-                SlowMo = 1000,
+                SlowMo = headless ? 0 : 1000,
                 ExecutablePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe"
             }).Result;
     }
