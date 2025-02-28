@@ -15,8 +15,9 @@ Guia paso a paso a continuacion de la ficha tecnica.
 - Otras implementaciones: Pruebas Unitarias y Pruebas de Integracion. 
 
 ## Instalacion - Opcion 1: Descarga directa.
-.[!NOTE].
+
 Si preferis hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podes descargar el ejecutable comprimido desde el siguiente link probar la aplicacion directamente:
+**Nota:** Aca va el link.
 
 
 - [.NET 9](w) instalado.
