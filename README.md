@@ -55,8 +55,9 @@ La imagenen adjunta es del .exe, el funcionamiento es el mismo si ejecutas desde
 
 ![image](https://github.com/user-attachments/assets/b3777c03-bfa6-4e95-a0e2-684c12b33601)
 
+#### A continuacion una breve explicacion de cada item:
 
-##### A continuacion una breve explicacion de cada item:
+Aclaracion: Los dos primeros procesos automatizados fueron pilotos y aunque en el resultado final no reflejan una actividad diaria de oficina si demuestran automatizacion para navegar, completar formularios y simulado de clics en botones dinamicos.
 
 1.  **Busqueda en youtube sin parametros (Bohemian Rhapsody), usando una nueva sesion.**
 Este proceso abre Chrome en una nueva sesion, ingresa a youtube, busca la cancion Bohemian Rhapsody e intenta skippear las publicidades en caso de que haya, terminando la automatizacion con la cancion reproduciendose. 
@@ -72,8 +73,8 @@ Abre Chrome, identifica la sesion del usuario e ingresa a Gmail. Redacta un corr
 
 4. **Lectura completa de PDF de ejemplo, muestra informacion importante por consola.**
 En la carpeta "Resources" hay un pdf (ExamplePDF) con texto generico Lore Ipsum que puedes abrir. En medio del archivo hay una seccion con titulo "OBJETO DE LA LICITACION O EL CONTRATO" seguido de otros detalles de interes. La automatizacion realiza una lectura completa del archivo pdf, se busca este titulo y se copia junto con los detalles de interes. Finalmente imprime esta informacion en pantalla.
-![image](https://github.com/user-attachments/assets/d4013c95-900d-4cb3-97a1-1e440f9ecf48)
 
+![image](https://github.com/user-attachments/assets/a71f9a61-0ce4-46b1-a23b-31346de1229a)
 
 6. **Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.**
 Una combinacion del punto 3 y 4. Primero se realiza la lectura del PDF de ejemplo, se busca el titulo y se copia junto con la informacion de interes. En lugar de imprimir el texto en pantalla, el proceso abre Chrome, identifica la sesion del usuario, y envia la informacion por correo al mismo usuario.
