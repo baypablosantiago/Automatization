@@ -51,9 +51,9 @@ Recomendado el uso de VS Code y el SDK de .NET 9, aunque tambien se puede utiliz
 
 
 ## 2. Uso:
-Las imagenes adjuntas son del .exe, el funcionamiento es el mismo si ejecutas desde la terminal. Al ejecutar la aplicacion veras las siguientes opciones :
+La imagenen adjunta es del .exe, el funcionamiento es el mismo si ejecutas desde la terminal. Al ejecutar la aplicacion veras las siguientes opciones :
 
-![image](https://github.com/user-attachments/assets/557cd9b4-25dc-41e7-a22d-3a747ab76ebc)
+![image](https://github.com/user-attachments/assets/b3777c03-bfa6-4e95-a0e2-684c12b33601)
 
 
 ##### A continuacion una breve explicacion de cada item:
@@ -71,12 +71,13 @@ Abre Chrome, identifica la sesion del usuario e ingresa a Gmail. Redacta un corr
 
 
 4. **Lectura completa de PDF de ejemplo, muestra informacion importante por consola.**
-En la carpeta "Resources" hay un pdf (ExamplePDF) con texto generico Lore Ipsum. En medio del archivo hay una seccion con titulo "OBJETO DE LA LICITACION O EL CONTRATO" seguido de otros detalles de interes. La automatizacion realiza una lectura completa del archivo pdf, se busca este titulo y se copia junto con los detalles de interes. Finalmente imprime esta informacion en pantalla.
+En la carpeta "Resources" hay un pdf (ExamplePDF) con texto generico Lore Ipsum que puedes abrir. En medio del archivo hay una seccion con titulo "OBJETO DE LA LICITACION O EL CONTRATO" seguido de otros detalles de interes. La automatizacion realiza una lectura completa del archivo pdf, se busca este titulo y se copia junto con los detalles de interes. Finalmente imprime esta informacion en pantalla.
+![image](https://github.com/user-attachments/assets/d4013c95-900d-4cb3-97a1-1e440f9ecf48)
 
 
-5. **Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.**
+6. **Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.**
 Una combinacion del punto 3 y 4. Primero se realiza la lectura del PDF de ejemplo, se busca el titulo y se copia junto con la informacion de interes. En lugar de imprimir el texto en pantalla, el proceso abre Chrome, identifica la sesion del usuario, y envia la informacion por correo al mismo usuario.
 
 
-6. **Ocultar Browser - No se muestra el paso a paso, procesos mas rapidos.**
+7. **Ocultar Browser - No se muestra el paso a paso, procesos mas rapidos.**
 Activa (o desactiva) el modo Headless, esto significa que Chrome no sera visible mientras se realizan los procesos automatizados. Tambien se desactivara el sleep artificial de un segundo que existe entre paso y paso, de esta manera se obtendran los mismos resultados en las opciones anteriores mucho mas rapido.
