@@ -8,17 +8,17 @@ Mediante una simple interfaz de consola, podrás ejecutar una serie de procesos 
 
 Guía paso a paso a continuación de la ficha técnica.
 
-## Tecnologías - Ficha técnica:
+## Ficha técnica - Tecnologías
 
 - Desarrollado en **[Visual Studio Code](https://code.visualstudio.com/)** utilizando el **[SDK de .NET 9](https://dotnet.microsoft.com/es-es/download/dotnet/9.0)**.
 - Librerías de terceros utilizadas: **[iText](https://itextpdf.com/)** y **[Playwright](https://playwright.dev/dotnet/docs/intro)**.
 - Otras implementaciones: Pruebas Unitarias y Pruebas de Integración. 
 
 
-## 1. Requisitos antes de comenzar:
+## 1. Requisitos antes de comenzar.
 Para el completo funcionamiento de la aplicación, es importante que tengas instalado Chrome y una cuenta de Google logueada en el mismo browser, ya que algunos procesos automatizados consisten en enviar un correo desde el Gmail del usuario.
 
-##  2. Instalación 
+##  2. Instalación .
 ### Opcion A: Descarga directa.
 
 Si preferís hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podés descargar el ejecutable comprimido desde el siguiente link y probar la aplicación directamente:
@@ -50,7 +50,7 @@ Recomendado el uso de VS Code y el SDK de .NET 9, aunque también se puede utili
     ```
 
 
-## 2. Uso:
+## 3. Uso
 La imagen adjunta es del .exe, el funcionamiento es el mismo si ejecutás desde la terminal. Al ejecutar la aplicación verás las siguientes opciones:
 
 ![image](https://github.com/user-attachments/assets/b3777c03-bfa6-4e95-a0e2-684c12b33601)
@@ -83,7 +83,7 @@ Una combinación del punto 3 y 4. Primero se realiza la lectura del PDF de ejemp
 6. **Ocultar Browser - No se muestra el paso a paso, procesos más rápidos.**
 Activa (o desactiva) el modo Headless. Esto significa que Chrome no será visible mientras se realizan los procesos automatizados. También se desactivará el sleep artificial de un segundo que existe entre paso y paso. De esta manera, se obtendrán los mismos resultados en las opciones anteriores, pero mucho más rápido.
 
-##  3. Tests
+##  4. Tests
 
 Si clonaste el repositorio (Opción B: descarga para desarrolladores), podés correr los tests incluidos:
 - Unitarios, para la clase de lectura de PDF.
@@ -98,10 +98,13 @@ Si clonaste el repositorio (Opción B: descarga para desarrolladores), podés co
    dotnet test
     ```
 
-##  4. Nota final
+##  5. Nota final
 
 > Si me ves invirtiendo 5 horas en automatizar
+> 
 > una tarea que demoro 5 minutos en hacer:
+>
 > déjame.
+> 
 > Estoy exactamente donde quiero estar.
 
