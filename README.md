@@ -18,7 +18,7 @@ Guía paso a paso a continuación de la ficha técnica.
 ## 1. Requisitos antes de comenzar.
 Para el completo funcionamiento de la aplicación, es importante que tengas instalado Chrome y una cuenta de Google logueada en el mismo browser, ya que algunos procesos automatizados consisten en enviar un correo desde el Gmail del usuario.
 
-##  2. Instalación .
+##  2. Instalación.
 ### Opcion A: Descarga directa.
 
 Si preferís hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podés descargar el ejecutable comprimido desde el siguiente link y probar la aplicación directamente:
