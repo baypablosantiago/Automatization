@@ -1,38 +1,38 @@
 # Procesos Automatizados
 
-Bienvenid@, este es un proyecto de demostracion. 
+Bienvenid@, este es un proyecto de demostración.
 
-Su objetivo es dar ejemplos practicos sobre que tipo de actividades repetitivas de oficina pueden ser automatizadas mediante codigo, ganando tanto minutos de productividad como aligerando la carga mental de los trabajadores de escritorio. 
+El objetivo es dar ejemplos prácticos sobre qué tipo de actividades repetitivas de oficina pueden ser automatizadas mediante código, ganando tanto minutos de productividad como aligerando la carga mental de los trabajadores de escritorio.
 
-A travez de una simple interfaz de consola, podras ejecutar una serie de procesos automatizados predefinidos. 
+Mediante una simple interfaz de consola, podrás ejecutar una serie de procesos automatizados predefinidos.
 
-Guia paso a paso a continuacion de la ficha tecnica.
+Guía paso a paso a continuación de la ficha técnica.
 
-## Tecnologias - Ficha tecnica:
+## Tecnologías - Ficha técnica:
 
 - Desarrollado en **[Visual Studio Code](https://code.visualstudio.com/)** utilizando el **[SDK de .NET 9](https://dotnet.microsoft.com/es-es/download/dotnet/9.0)**.
-- Librerias de terceros utilizadas: **[iText](https://itextpdf.com/)** y **[Playwright](https://playwright.dev/dotnet/docs/intro)**.
-- Otras implementaciones: Pruebas Unitarias y Pruebas de Integracion. 
+- Librerías de terceros utilizadas: **[iText](https://itextpdf.com/)** y **[Playwright](https://playwright.dev/dotnet/docs/intro)**.
+- Otras implementaciones: Pruebas Unitarias y Pruebas de Integración. 
 
 
 ## 1. Requisitos antes de comenzar:
-Para el completo funcionamiento de la aplicacion, es importante que tengas instalado Chrome y una cuenta de google logeada en el mismo browser, ya que algunos procesos automatizados consisten en enviar un correo desde el gmail del usuario.
+Para el completo funcionamiento de la aplicación, es importante que tengas instalado Chrome y una cuenta de Google logueada en el mismo browser, ya que algunos procesos automatizados consisten en enviar un correo desde el Gmail del usuario.
 
-##  2. Instalacion 
+##  2. Instalación 
 ### Opcion A: Descarga directa.
 
-Si preferis hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podes descargar el ejecutable comprimido desde el siguiente link probar la aplicacion directamente:
+Si preferís hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podés descargar el ejecutable comprimido desde el siguiente link y probar la aplicación directamente:
 
 **Link:** Y aca va el link.
 
 ### Opcion B: Recomendado para desarrolladores - Clonando el repositorio e instalando dependencias desde la terminal. 
 
-Recomendado el uso de VS Code y el SDK de .NET 9, aunque tambien se puede utilizar Visual Studio 2022. 
+Recomendado el uso de VS Code y el SDK de .NET 9, aunque también se puede utilizar Visual Studio 2022. 
 1. Abre la terminal de tu editor de texto o IDE y clona el repositorio:
    ```sh
    git clone https://github.com/baypablosantiago/Automatization
     ```
-2. Muevete al repositorio clonado que contiene el proyecto:
+2. Muévete al repositorio clonado que contiene el proyecto:
     ```sh
    cd Automatization/Automatization
     ```
@@ -40,45 +40,68 @@ Recomendado el uso de VS Code y el SDK de .NET 9, aunque tambien se puede utiliz
     ```sh
    dotnet restore
     ```   
-4. Ejecuta desde la misma terminar:
+4. Ejecuta desde la misma terminal:
     ```sh
    dotnet run
     ```
-5. OPCIONAL: Podes generar el mismo ejecutable que se encuentra en descarga directa:
+5. OPCIONAL: Podés generar el mismo ejecutable que se encuentra en descarga directa. Usando el siguiente comando, se crea por defecto en **Automatization/Automatization/bin/Release/net9.0/win-x64/publish**
     ```sh
    dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
     ```
 
 
 ## 2. Uso:
-La imagenen adjunta es del .exe, el funcionamiento es el mismo si ejecutas desde la terminal. Al ejecutar la aplicacion veras las siguientes opciones :
+La imagen adjunta es del .exe, el funcionamiento es el mismo si ejecutás desde la terminal. Al ejecutar la aplicación verás las siguientes opciones:
 
 ![image](https://github.com/user-attachments/assets/b3777c03-bfa6-4e95-a0e2-684c12b33601)
 
-#### A continuacion una breve explicacion de cada item:
+#### A continuación, una breve explicación de cada ítem:
 
-Aclaracion: Los dos primeros procesos automatizados fueron pilotos y aunque en el resultado final no reflejan una actividad diaria de oficina si demuestran automatizacion para navegar, completar formularios y simulado de clics en botones dinamicos.
+*Aclaración: Los dos primeros procesos automatizados fueron pilotos y, aunque en el resultado final no reflejan una actividad diaria de oficina, sí demuestran automatización para navegar, completar formularios y simular clics en botones dinámicos.*
 
-1.  **Busqueda en youtube sin parametros (Bohemian Rhapsody), usando una nueva sesion.**
-Este proceso abre Chrome en una nueva sesion, ingresa a youtube, busca la cancion Bohemian Rhapsody e intenta skippear las publicidades en caso de que haya, terminando la automatizacion con la cancion reproduciendose. 
-
-
-2. **Busqueda en youtube ingresando parametro de busqueda, usando una nueva sesion.**
-Similar a la automatizacion anterior, pero en este caso permite al usuario ingresar el nombre de la cancion a buscar.
+1.  **Búsqueda en YouTube sin parámetros (Bohemian Rhapsody), usando una nueva sesión.**
+Este proceso abre Chrome en una nueva sesión, ingresa a YouTube, busca la canción Bohemian Rhapsody e intenta saltar las publicidades en caso de que haya, terminando la automatización con la canción reproduciéndose.
 
 
-3. **Envio de correo de ejemplo, usando sesion iniciada en Chrome.**
-Abre Chrome, identifica la sesion del usuario e ingresa a Gmail. Redacta un correo nuevo, siendo el destinatario el mismo usuario propietario del correo, con asunto "Correo automatizado de ejemplo" y cuerpo "Hello world! Este es un correo de ejemplo".
+2. **Búsqueda en YouTube ingresando parámetro de búsqueda, usando una nueva sesión.**
+Similar a la automatización anterior, pero en este caso permite al usuario ingresar el nombre de la canción a buscar.
 
 
-4. **Lectura completa de PDF de ejemplo, muestra informacion importante por consola.**
-En la carpeta "Resources" hay un pdf (ExamplePDF) con texto generico Lore Ipsum que puedes abrir. En medio del archivo hay una seccion con titulo "OBJETO DE LA LICITACION O EL CONTRATO" seguido de otros detalles de interes. La automatizacion realiza una lectura completa del archivo pdf, se busca este titulo y se copia junto con los detalles de interes. Finalmente imprime esta informacion en pantalla.
+3. **Envío de correo de ejemplo, usando sesión iniciada en Chrome.**
+Abre Chrome, identifica la sesión del usuario e ingresa a Gmail. Redacta un correo nuevo, siendo el destinatario el mismo usuario propietario del correo, con asunto "Correo automatizado de ejemplo" y cuerpo "Hello world! Este es un correo de ejemplo".
+
+
+4. **Lectura completa de PDF de ejemplo, muestra información importante por consola.**
+En la carpeta "Resources" hay un PDF (ExamplePDF) con texto genérico Lorem Ipsum que puedes abrir. En medio del archivo hay una sección con título "OBJETO DE LA LICITACIÓN O EL CONTRATO", seguido de otros detalles de interés. La automatización realiza una lectura completa del archivo PDF, busca este título y copia los detalles relevantes. Finalmente, imprime esta información en pantalla.
 
 ![image](https://github.com/user-attachments/assets/a71f9a61-0ce4-46b1-a23b-31346de1229a)
 
-6. **Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.**
-Una combinacion del punto 3 y 4. Primero se realiza la lectura del PDF de ejemplo, se busca el titulo y se copia junto con la informacion de interes. En lugar de imprimir el texto en pantalla, el proceso abre Chrome, identifica la sesion del usuario, y envia la informacion por correo al mismo usuario.
+5. **Lectura completa de PDF de ejemplo, envía información importante por correo usando sesión iniciada en Chrome.**
+Una combinación del punto 3 y 4. Primero se realiza la lectura del PDF de ejemplo, se busca el título y se copia junto con la información de interés. En lugar de imprimir el texto en pantalla, el proceso abre Chrome, identifica la sesión del usuario y envía la información por correo al mismo usuario.
 
 
-7. **Ocultar Browser - No se muestra el paso a paso, procesos mas rapidos.**
-Activa (o desactiva) el modo Headless, esto significa que Chrome no sera visible mientras se realizan los procesos automatizados. Tambien se desactivara el sleep artificial de un segundo que existe entre paso y paso, de esta manera se obtendran los mismos resultados en las opciones anteriores mucho mas rapido.
+6. **Ocultar Browser - No se muestra el paso a paso, procesos más rápidos.**
+Activa (o desactiva) el modo Headless. Esto significa que Chrome no será visible mientras se realizan los procesos automatizados. También se desactivará el sleep artificial de un segundo que existe entre paso y paso. De esta manera, se obtendrán los mismos resultados en las opciones anteriores, pero mucho más rápido.
+
+##  3. Tests
+
+Si clonaste el repositorio (Opción B: descarga para desarrolladores), podés correr los tests incluidos:
+- Unitarios, para la clase de lectura de PDF.
+- De integración, para las clases de automatizacion de youtube y gmail.
+
+1. Muévete a la carpeta de los test:
+   ```sh
+   cd Automatization/Tests
+    ```
+2. Inicia los tests:
+    ```sh
+   dotnet test
+    ```
+
+##  4. Nota final
+
+> Si me ves invirtiendo 5 horas en automatizar
+> una tarea que demoro 5 minutos en hacer:
+> déjame.
+> Estoy exactamente donde quiero estar.
+
