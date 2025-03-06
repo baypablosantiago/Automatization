@@ -6,7 +6,7 @@ class Program
 {
     public static async Task Main()
     {   
-        Console.Title = "Procesos Automatizados - Consola de demostracion";
+        Console.Title = "Procesos Automatizados - Consola de demostración.";
         BrowserService browserService;
         YoutubeAutomation player;
         GmailAutomation gmailAutomation;
@@ -30,7 +30,7 @@ class Program
             Console.WriteLine(" ");
             Console.Write("Opcion seleccionada: ");
 
-            string selection = Console.ReadLine() ?? string.Empty; 
+            string selection = Console.ReadLine() ?? string.Empty; //operador de coalescencia nula, para evitar posibles null de parte del usuario
 
             switch (selection)
             {
@@ -53,7 +53,7 @@ class Program
                     Console.Write("Ingrese el nombre de una cancion o artista: ");
                     browserService = new BrowserService(headless);
                     player = new YoutubeAutomation(browserService);
-                    string search = Console.ReadLine() ?? string.Empty; //operador de coalescencia nula, para evitar posibles null de parte del usuario
+                    string search = Console.ReadLine() ?? string.Empty; 
                     Console.WriteLine("Inicializando Browser...");
                     Console.WriteLine("Se intentaran skipear los adds en caso de que existan.");
                     await player.PlaySong(search);

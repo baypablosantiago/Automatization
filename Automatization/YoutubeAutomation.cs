@@ -24,6 +24,9 @@ public class YoutubeAutomation
         await page.WaitForSelectorAsync("ytd-video-renderer", new PageWaitForSelectorOptions { Timeout = 10000 });
         await page.ClickAsync("ytd-video-renderer a#thumbnail");
 
+        await page.ReloadAsync(); //para asegurar que el video comience y posible skipeo de adds
+        await page.WaitForSelectorAsync("video");
+
         try
         {
             var skipButton = await page.WaitForSelectorAsync("div.ytp-skip-ad button.ytp-skip-ad-button", new PageWaitForSelectorOptions { Timeout = 15000 });
@@ -33,7 +36,7 @@ public class YoutubeAutomation
             }
         }
         catch (TimeoutException) { }
-
+        
         //await page.Keyboard.PressAsync("f"); //inicia modo cine, no es realmente necesario
     }
 }
