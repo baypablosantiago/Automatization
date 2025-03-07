@@ -9,6 +9,7 @@ class Program
         Console.Title = "Procesos Automatizados - Consola de demostración.";
         BrowserService browserService;
         YoutubeAutomation player;
+        SoundCloudAutomation hiddenPlayer;
         GmailAutomation gmailAutomation;
         PdfReaderAutomation reader;
         string pdfFile = Path.Combine(AppContext.BaseDirectory, "Resources", "ExamplePDF.pdf");
@@ -37,8 +38,8 @@ class Program
                 case "1":
                     Console.Clear();
                     Console.WriteLine("Opción 1 - Busqueda automatizada de Bohemian Rhapsody.");
-                    Console.WriteLine("Inicializando Browser...");
-                    Console.WriteLine("Se intentaran skipear los adds en caso de que existan.");
+                    Console.WriteLine("Inicializando Browser.");
+                    Console.WriteLine("Se intentaran skipear los adds en caso de que existan. Espere unos segundos por favor...");
                     browserService = new BrowserService(headless);
                     player = new YoutubeAutomation(browserService);
                     await player.PlaySong("Bohemian Rhapsody");
@@ -54,8 +55,8 @@ class Program
                     browserService = new BrowserService(headless);
                     player = new YoutubeAutomation(browserService);
                     string search = Console.ReadLine() ?? string.Empty; 
-                    Console.WriteLine("Inicializando Browser...");
-                    Console.WriteLine("Se intentaran skipear los adds en caso de que existan.");
+                    Console.WriteLine("Inicializando Browser.");
+                    Console.WriteLine("Se intentaran skipear los adds en caso de que existan. Espere unos segundos por favor...");
                     await player.PlaySong(search);
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -65,7 +66,7 @@ class Program
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
-                    Console.WriteLine("Inicializando Browser...");
+                    Console.WriteLine("Inicializando Browser.");
                     browserService = new BrowserService(headless,userDataPath);
                     gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.SendMail();
@@ -89,7 +90,7 @@ class Program
                 case "5":
                     Console.Clear();
                     Console.WriteLine("5 - Lectura completa de PDF, enviando informacion importante por correo:");
-                    Console.WriteLine("Inicializando Browser...");
+                    Console.WriteLine("Inicializando Browser.");
                     reader = new PdfReaderAutomation();
                     string searchedItem = reader.ReadPdf(pdfFile);
                     browserService = new BrowserService(headless,userDataPath);
@@ -104,13 +105,16 @@ class Program
                 case "6":
                     headless = !headless;
                     Console.Clear();
-                    Console.WriteLine($"{(headless ? "Modo headless ACTIVADO - No se mostrara el Browser." : "Modo headless Desactivando - Mostrando Browser.")}");
+                    Console.WriteLine($"{(headless ? "No se mostrara el browser." : "Mostrando browser.")}");
                     await Task.Delay(3000);
+                    break;
+                case "8":
+                    //espacio para test de Spotify
                     break;
                 case "0":
                     menu = false;
                     Console.Clear();
-                    Console.WriteLine("Gracias por utilizar la aplicacion.");
+                    Console.WriteLine("Gracias por utilizar la aplicacion!");
                     await Task.Delay(1500);
 
                 break;

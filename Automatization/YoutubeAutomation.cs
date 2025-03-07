@@ -35,8 +35,9 @@ public class YoutubeAutomation
                 await skipButton.ClickAsync();
             }
         }
-        catch (TimeoutException) { }
-        
-        //await page.Keyboard.PressAsync("f"); //inicia modo cine, no es realmente necesario
+        catch (TimeoutException) 
+        { 
+            //Si no se skipean los adds, entra a este bloque
+        }
     }
 }
