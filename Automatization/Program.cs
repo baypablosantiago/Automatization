@@ -9,7 +9,6 @@ class Program
         Console.Title = "Procesos Automatizados - Consola de demostración.";
         BrowserService browserService;
         YoutubeAutomation player;
-        SoundCloudAutomation hiddenPlayer;
         GmailAutomation gmailAutomation;
         PdfReaderAutomation reader;
         string pdfFile = Path.Combine(AppContext.BaseDirectory, "Resources", "ExamplePDF.pdf");
