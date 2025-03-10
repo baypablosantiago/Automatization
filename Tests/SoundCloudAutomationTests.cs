@@ -1,16 +1,16 @@
 using Xunit;
 using Microsoft.Playwright;
 
-public class YotubeAutomationTests // INTEGRATION TEST
+public class SoundCloudAutomationTest // INTEGRATION TEST
 {
     [Fact]
     public async Task PlaySong_ShouldOpenTheBrowserAndPlayNeverGiveYouUp()
     {
         // Arrange
         var browserService = new BrowserService(false);
-        var youtubeAutomation = new YouTubeAutomation(browserService);
+        var soundCloudAutomation = new SoundCloudAutomation(browserService);
         // Act
-        await youtubeAutomation.PlaySong("Never Give You Up");
+        await soundCloudAutomation.PlaySong("Never Give You Up");
         // Assert no hay uno concreto, pero si llega hasta el final sin errores, el test es exitoso.
     }
 }

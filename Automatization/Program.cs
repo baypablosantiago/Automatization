@@ -8,25 +8,27 @@ class Program
     {   
         Console.Title = "Procesos Automatizados - Consola de demostración.";
         BrowserService browserService;
-        YoutubeAutomation player;
+        YouTubeAutomation player;
+        SoundCloudAutomation player2;
         GmailAutomation gmailAutomation;
         PdfReaderAutomation reader;
         string pdfFile = Path.Combine(AppContext.BaseDirectory, "Resources", "ExamplePDF.pdf");
         string userDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Google", "Chrome", "User Data");
-        bool headless = false;
         bool menu = true;
         while (menu)
         {
             Console.Clear();
             Console.WriteLine("Ingrese un numero para realizar una accion automatizada:");
             Console.WriteLine(" ");
-            Console.WriteLine("1 - Busqueda en youtube sin parametros (Bohemian Rhapsody), usando una nueva sesion.");
-            Console.WriteLine("2 - Busqueda en youtube ingresando parametro de busqueda, usando una nueva sesion.");
-            Console.WriteLine("3 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
-            Console.WriteLine("4 - Lectura completa de PDF de ejemplo, muestra informacion importante por consola.");
-            Console.WriteLine("5 - Lectura completa de PDF de ejemplo, envia informacion importante por correo usando sesion iniciada en Chrome.");
-            Console.WriteLine($"6 - {(headless ? "Mostrar Browser - Paso a paso visible." : "Ocultar Browser - No se muestra el paso a paso, procesos mas rapidos.")}");            
-            Console.WriteLine("0 - Salir.");
+            Console.WriteLine("1 - Busqueda en YouTube de ejemplo.");
+            Console.WriteLine("2 - Busqueda personalizada en YouTube, ingresando parametro de busqueda y usando una nueva sesion.");
+            Console.WriteLine("3 - Busqueda personalizada en SoundCloud, ingresando parametro de busqueda, usando una nueva sesion y aceptando cookies.");
+            Console.WriteLine("4 - Lectura completa de PDF de ejemplo, analisis y extracción de informacion importante.");
+            Console.WriteLine("5 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome.");
+            Console.WriteLine("6 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+            Console.WriteLine("7 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome.");
+            Console.WriteLine("8 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+            Console.WriteLine("9 - Salir.");
             Console.WriteLine(" ");
             Console.Write("Opcion seleccionada: ");
 
@@ -36,11 +38,11 @@ class Program
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine("Opción 1 - Busqueda automatizada de Bohemian Rhapsody.");
+                    Console.WriteLine("Opción 1 - Busqueda en YouTube de ejemplo: Bohemian Rhapsody - Queen.");
                     Console.WriteLine("Inicializando Browser.");
                     Console.WriteLine("Se intentaran skipear los adds en caso de que existan. Espere unos segundos por favor...");
-                    browserService = new BrowserService(headless);
-                    player = new YoutubeAutomation(browserService);
+                    browserService = new BrowserService(false);
+                    player = new YouTubeAutomation(browserService);
                     await player.PlaySong("Bohemian Rhapsody");
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
@@ -49,10 +51,10 @@ class Program
                     break;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine("Opción 2 - Busqueda personalizada.");
+                    Console.WriteLine("2 - Busqueda personalizada en YouTube, ingresando parametro de busqueda y usando una nueva sesion.");
                     Console.Write("Ingrese el nombre de una cancion o artista: ");
-                    browserService = new BrowserService(headless);
-                    player = new YoutubeAutomation(browserService);
+                    browserService = new BrowserService(false);
+                    player = new YouTubeAutomation(browserService);
                     string search = Console.ReadLine() ?? string.Empty; 
                     Console.WriteLine("Inicializando Browser.");
                     Console.WriteLine("Se intentaran skipear los adds en caso de que existan. Espere unos segundos por favor...");
@@ -64,12 +66,13 @@ class Program
                     break;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("Opción 3 - Envio de correo de ejemplo.");
+                    Console.WriteLine("3 - Busqueda personalizada en SoundCloud, ingresando parametro de busqueda, usando una nueva sesion y aceptando cookies.");
+                    Console.Write("Ingrese el nombre de una cancion o artista: ");
+                    browserService = new BrowserService(false);
+                    player2 = new SoundCloudAutomation(browserService);
+                    string search2 = Console.ReadLine() ?? string.Empty; 
                     Console.WriteLine("Inicializando Browser.");
-                    browserService = new BrowserService(headless,userDataPath);
-                    gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
-                    await gmailAutomation.SendMail();
-                    Console.WriteLine("Correo enviado!");
+                    await player2.PlaySong(search2);
                     Console.WriteLine(" ");
                     Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
                     Console.ReadKey();
@@ -77,7 +80,7 @@ class Program
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("4 - Lectura completa de PDF, mostrando informacion importante al finalizar:");
+                    Console.WriteLine("4 - Lectura completa de PDF de ejemplo, analisis y extracción de informacion importante.");
                     reader = new PdfReaderAutomation();
                     string info = reader.ReadPdf(pdfFile);
                     Console.WriteLine(" ");
@@ -88,12 +91,10 @@ class Program
                     break;
                 case "5":
                     Console.Clear();
-                    Console.WriteLine("5 - Lectura completa de PDF, enviando informacion importante por correo:");
+                    Console.WriteLine("5 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome.");
                     Console.WriteLine("Inicializando Browser.");
-                    reader = new PdfReaderAutomation();
-                    string searchedItem = reader.ReadPdf(pdfFile);
-                    browserService = new BrowserService(headless,userDataPath);
-                    gmailAutomation = new GmailAutomation(browserService, "Informacion importante", searchedItem);
+                    browserService = new BrowserService(false,userDataPath);
+                    gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
                     await gmailAutomation.SendMail();
                     Console.WriteLine("Correo enviado!");
                     Console.WriteLine(" ");
@@ -102,26 +103,59 @@ class Program
                     await browserService.CloseBrowserAsync();
                     break;
                 case "6":
-                    headless = !headless;
                     Console.Clear();
-                    Console.WriteLine($"{(headless ? "No se mostrara el browser." : "Mostrando browser.")}");
-                    await Task.Delay(3000);
+                    Console.WriteLine("6 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+                    Console.WriteLine("Inicializando Browser.");
+                    browserService = new BrowserService(true,userDataPath);
+                    gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
+                    await gmailAutomation.SendMail();
+                    Console.WriteLine("Correo enviado!");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.ReadKey();
+                    await browserService.CloseBrowserAsync();
+                    break;   
+                case "7":
+                    Console.Clear();
+                    Console.WriteLine("7 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome.");
+                    Console.WriteLine("Inicializando Browser.");
+                    reader = new PdfReaderAutomation();
+                    string searchedItem = reader.ReadPdf(pdfFile);
+                    browserService = new BrowserService(false,userDataPath);
+                    gmailAutomation = new GmailAutomation(browserService, "Informacion importante", searchedItem);
+                    await gmailAutomation.SendMail();
+                    Console.WriteLine("Correo enviado!");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.ReadKey();
+                    await browserService.CloseBrowserAsync();
                     break;
                 case "8":
-                    //espacio para test de Spotify
+                    Console.Clear();
+                    Console.WriteLine("8 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+                    Console.WriteLine("Inicializando Browser.");
+                    reader = new PdfReaderAutomation();
+                    string searchedItem2 = reader.ReadPdf(pdfFile);
+                    browserService = new BrowserService(false,userDataPath);
+                    gmailAutomation = new GmailAutomation(browserService, "Informacion importante", searchedItem2);
+                    await gmailAutomation.SendMail();
+                    Console.WriteLine("Correo enviado!");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Presione cualquier tecla para cerrar el browser y volver al menu principal.");
+                    Console.ReadKey();
+                    await browserService.CloseBrowserAsync();
                     break;
-                case "0":
+                case "9":
                     menu = false;
                     Console.Clear();
                     Console.WriteLine("Gracias por utilizar la aplicacion!");
                     await Task.Delay(1500);
-
                 break;
+
                 default:
                     Console.Clear();
-                    Console.WriteLine("Opción no válida.");
+                    Console.WriteLine("Ingrese una opcion válida.");
                     await Task.Delay(1000);
-
                     break;
             }
         }

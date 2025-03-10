@@ -40,20 +40,20 @@ public class GmailAutomation
 
         if (email != null)
         {
-            await page.WaitForSelectorAsync("div.T-I.T-I-KE.L3");
+            await page.WaitForSelectorAsync("div[role='button']:has-text('Redactar')");
+            await page.ClickAsync("div[role='button']:has-text('Redactar')");
 
-            await page.ClickAsync("div.T-I.T-I-KE.L3");
+            await page.WaitForSelectorAsync("input[aria-label='Destinatarios en Para']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 60000 });
+            await page.FillAsync("input[aria-label='Destinatarios en Para']", email);
 
-            await page.WaitForSelectorAsync("input[id=':vd']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 60000 }); // 60 segundos
-            await page.FillAsync("input[id=':vd']", email);
+            await page.WaitForSelectorAsync("input[name='subjectbox']");
+            await page.FillAsync("input[name='subjectbox']", _subject);
 
-            await page.WaitForSelectorAsync("input[id=':rn']");
-            await page.FillAsync("input[id=':rn']", _subject);
+            await page.WaitForSelectorAsync("div[role='textbox']");
+            await page.FillAsync("div[role='textbox']", _body);
 
-            await page.WaitForSelectorAsync("div[aria-label='Cuerpo del mensaje']");
-            await page.FillAsync("div[aria-label='Cuerpo del mensaje']", _body);
-
-            await page.ClickAsync("div[aria-label='Enviar ‪(Ctrl-Enter)‬']");
+            await page.WaitForSelectorAsync("div[role='button'][aria-label*='Enviar']", new PageWaitForSelectorOptions { State = WaitForSelectorState.Visible, Timeout = 10000 });
+            await page.ClickAsync("div[role='button'][aria-label*='Enviar']");
 
         }
     }
