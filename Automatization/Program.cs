@@ -6,11 +6,6 @@ class Program
     public static async Task Main()
     {   
         Console.Title = "Procesos Automatizados - Consola de demostración.";
-        #pragma warning disable CA1416 // Validate platform compatibility
-        Console.WindowHeight = 20;  
-        Console.WindowWidth = 140;  
-        #pragma warning restore CA1416 // Validate platform compatibility
-
         BrowserService browserService;
         YouTubeAutomation player;
         SoundCloudAutomation player2;
