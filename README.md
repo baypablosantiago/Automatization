@@ -57,7 +57,7 @@ La imagen adjunta es del .exe, el funcionamiento es el mismo si ejecutás desde 
 
 #### A continuación, una breve explicación de cada ítem:
 
-*Aclaración: Los dos primeros procesos automatizados fueron pilotos y, aunque en el resultado final no reflejan una actividad diaria de oficina, sí demuestran automatización para navegar, completar formularios y simular clics en botones dinámicos.*
+*Aclaración: Los tres primeros procesos automatizados fueron pilotos y, aunque en el resultado final no reflejan una actividad diaria de oficina, demuestran automatización para navegar, completar formularios y simular clics en botones dinámicos.*
 
 1.  **Busqueda en YouTube de ejemplo.**
 Este proceso abre Chrome en una nueva sesión, ingresa a YouTube, busca la canción Bohemian Rhapsody e intenta saltar las publicidades en caso de que haya, terminando la automatización con la canción reproduciéndose.
@@ -103,6 +103,9 @@ Si clonaste el repositorio (Opción B: descarga para desarrolladores), podés co
 ##  5. Nota final.
 
 > Si me ves invirtiendo 5 horas en automatizar
+> 
 > una tarea que demoro 5 minutos en hacer:
+> 
 > déjame.
+> 
 > Estoy exactamente donde quiero estar.
