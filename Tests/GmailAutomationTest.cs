@@ -14,4 +14,15 @@ public class GmailAutomationTests // INTEGRATION TEST
         await gmailAutomation.SendMail();
         // Assert no hay uno concreto, pero si llega hasta el final sin errores, el test es exitoso.
     }
+
+    public async Task SendMail_ShouldSendExampleMailWithOpenSessionHEADLESS()
+    {
+        // Arrange
+        string userDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Google", "Chrome", "User Data");
+        BrowserService browserService = new BrowserService(true,userDataPath);
+        GmailAutomation gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
+        // Act
+        await gmailAutomation.SendMail();
+        // Assert no hay uno concreto, pero si llega hasta el final sin errores, el test es exitoso.
+    }
 }
