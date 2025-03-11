@@ -24,15 +24,16 @@ public class YouTubeAutomation
         await page.WaitForSelectorAsync("ytd-video-renderer", new PageWaitForSelectorOptions { Timeout = 10000 });
         await page.ClickAsync("ytd-video-renderer a#thumbnail");
 
-        await page.ReloadAsync(); //para asegurar que el video comience y posible skipeo de adds
+        await page.ReloadAsync(); //para asegurar que el video arranque y posible skipeo de adds
         await page.WaitForSelectorAsync("video");
 
         try
         {
-            var skipButton = await page.WaitForSelectorAsync("div.ytp-skip-ad button.ytp-skip-ad-button", new PageWaitForSelectorOptions { Timeout = 15000 });
+            var skipButton = await page.WaitForSelectorAsync("div.ytp-skip-ad button.ytp-skip-ad-button", new PageWaitForSelectorOptions { Timeout = 16000 });
             if (skipButton != null && await skipButton.IsVisibleAsync())
             {
-                await skipButton.ClickAsync();
+                //await skipButton.ClickAsync();
+                await page.ClickAsync(".ytp-skip-ad-button");
             }
         }
         catch (TimeoutException) 

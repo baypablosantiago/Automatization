@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using iText.Layout.Splitting;
 
 class Program
 {
     public static async Task Main()
     {   
         Console.Title = "Procesos Automatizados - Consola de demostración.";
+        Console.WindowHeight = 20;  // Ajusta la altura de la ventana
+        Console.WindowWidth = 140;  // Ajusta el ancho de la ventana
         BrowserService browserService;
         YouTubeAutomation player;
         SoundCloudAutomation player2;
@@ -21,11 +22,11 @@ class Program
             Console.WriteLine("Ingrese un numero para realizar una accion automatizada:");
             Console.WriteLine(" ");
             Console.WriteLine("1 - Busqueda en YouTube de ejemplo.");
-            Console.WriteLine("2 - Busqueda personalizada en YouTube, ingresando parametro de busqueda y usando una nueva sesion.");
-            Console.WriteLine("3 - Busqueda personalizada en SoundCloud, ingresando parametro de busqueda, usando una nueva sesion y aceptando cookies.");
+            Console.WriteLine("2 - Busqueda personalizada en YouTube, usando nueva sesion y skippeando Adds.");
+            Console.WriteLine("3 - Busqueda personalizada en SoundCloud, usando una nueva sesion y aceptando cookies.");
             Console.WriteLine("4 - Lectura completa de PDF de ejemplo, analisis y extracción de informacion importante.");
-            Console.WriteLine("5 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome.");
-            Console.WriteLine("6 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+            Console.WriteLine("5 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
+            Console.WriteLine("6 - Envio de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
             Console.WriteLine("7 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome.");
             Console.WriteLine("8 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome - MODO SIN BROWSER.");
             Console.WriteLine("9 - Salir.");
@@ -51,7 +52,7 @@ class Program
                     break;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine("2 - Busqueda personalizada en YouTube, ingresando parametro de busqueda y usando una nueva sesion.");
+                    Console.WriteLine("Opción 2 - Busqueda personalizada en YouTube, usando nueva sesion y skippeando Adds.");
                     Console.Write("Ingrese el nombre de una cancion o artista: ");
                     browserService = new BrowserService(false);
                     player = new YouTubeAutomation(browserService);
@@ -66,7 +67,7 @@ class Program
                     break;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("3 - Busqueda personalizada en SoundCloud, ingresando parametro de busqueda, usando una nueva sesion y aceptando cookies.");
+                    Console.WriteLine("Opción 3 - Busqueda personalizada en SoundCloud, usando una nueva sesion y aceptando cookies.");
                     Console.Write("Ingrese el nombre de una cancion o artista: ");
                     browserService = new BrowserService(false);
                     player2 = new SoundCloudAutomation(browserService);
@@ -80,7 +81,7 @@ class Program
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("4 - Lectura completa de PDF de ejemplo, analisis y extracción de informacion importante.");
+                    Console.WriteLine("Opción 4 - Lectura completa de PDF de ejemplo, analisis y extracción de informacion importante.");
                     reader = new PdfReaderAutomation();
                     string info = reader.ReadPdf(pdfFile);
                     Console.WriteLine(" ");
@@ -91,7 +92,7 @@ class Program
                     break;
                 case "5":
                     Console.Clear();
-                    Console.WriteLine("5 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome.");
+                    Console.WriteLine("Opción 5 - Envio de correo de ejemplo, usando sesion iniciada en Chrome.");
                     Console.WriteLine("Inicializando Browser.");
                     browserService = new BrowserService(false,userDataPath);
                     gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
@@ -104,7 +105,7 @@ class Program
                     break;
                 case "6":
                     Console.Clear();
-                    Console.WriteLine("6 - Enviar de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+                    Console.WriteLine("Opción 6 - Envio de correo de ejemplo, usando sesion iniciada en Chrome - MODO SIN BROWSER.");
                     Console.WriteLine("Inicializando Browser.");
                     browserService = new BrowserService(true,userDataPath);
                     gmailAutomation = new GmailAutomation(browserService, "Correo automatizado de ejemplo", "Hello world, este es un correo automatizado de ejemplo.");
@@ -117,7 +118,7 @@ class Program
                     break;   
                 case "7":
                     Console.Clear();
-                    Console.WriteLine("7 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome.");
+                    Console.WriteLine("Opción 7 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome.");
                     Console.WriteLine("Inicializando Browser.");
                     reader = new PdfReaderAutomation();
                     string searchedItem = reader.ReadPdf(pdfFile);
@@ -132,7 +133,7 @@ class Program
                     break;
                 case "8":
                     Console.Clear();
-                    Console.WriteLine("8 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome - MODO SIN BROWSER.");
+                    Console.WriteLine("Opción 8 - Lectura completa de PDF de ejemplo, enviando informacion importante por correo usando sesion iniciada en Chrome - MODO SIN BROWSER.");
                     Console.WriteLine("Inicializando Browser.");
                     reader = new PdfReaderAutomation();
                     string searchedItem2 = reader.ReadPdf(pdfFile);
