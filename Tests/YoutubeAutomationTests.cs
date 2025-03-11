@@ -11,6 +11,7 @@ public class YotubeAutomationTests // INTEGRATION TEST
         var youtubeAutomation = new YouTubeAutomation(browserService);
         // Act
         await youtubeAutomation.PlaySong("Never Give You Up");
-        // Assert no hay uno concreto, pero si llega hasta el final sin errores, el test es exitoso.
+        // Assert 
+        await browserService.CloseBrowserAsync();
     }
 }

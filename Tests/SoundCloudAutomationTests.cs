@@ -11,6 +11,7 @@ public class SoundCloudAutomationTest // INTEGRATION TEST
         var soundCloudAutomation = new SoundCloudAutomation(browserService);
         // Act
         await soundCloudAutomation.PlaySong("Never Give You Up");
-        // Assert no hay uno concreto, pero si llega hasta el final sin errores, el test es exitoso.
+        // Assert 
+        await browserService.CloseBrowserAsync();
     }
 }
