@@ -19,13 +19,13 @@ Guía paso a paso a continuación de la ficha técnica.
 Para el completo funcionamiento de la aplicación, es importante que uses Windows, tengas instalado Chrome en español y una cuenta de Google logueada en el mismo browser, ya que algunos procesos automatizados consisten en enviar un correo desde el Gmail del usuario.
 
 ##  2. Instalación.
-### Opcion A: Descarga directa.
+**Opcion A: Descarga directa.**
 
 Si preferís hacer solo una descarga y no instalar herramientas de desarrollo ni otras dependencias necesarias, podés descargar el ejecutable comprimido en .rar (51mb) desde el siguiente link y probar la aplicación directamente:
 
 **Link:** https://github.com/baypablosantiago/Automatization/releases/download/v1.0/Procesos.Automatizados.rar
 
-### Opcion B: Recomendado para desarrolladores - Clonando el repositorio e instalando dependencias desde la terminal. 
+**Opcion B: Recomendado para desarrolladores - Clonando el repositorio e instalando dependencias desde la terminal.** 
 
 Recomendado el uso de VS Code y el SDK de .NET 9, aunque también se puede utilizar Visual Studio 2022. 
 1. Abre la terminal de tu editor de texto o IDE y clona el repositorio:
@@ -55,7 +55,7 @@ La imagen adjunta es del .exe, el funcionamiento es el mismo si ejecutás desde 
 
 ![imagen](https://github.com/user-attachments/assets/8d7649d9-90e1-43ea-b01f-01a540df256c)
 
-#### A continuación, una breve explicación de cada ítem:
+**A continuación, una breve explicación de cada ítem:**
 
 *Aclaración: Los tres primeros procesos automatizados fueron pilotos y, aunque en el resultado final no reflejan una actividad diaria de oficina, demuestran automatización para navegar, completar formularios y simular clics en botones dinámicos.*
 
